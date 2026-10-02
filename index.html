@@ -1,1 +1,724 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>ShopAZE — Premium Digital Store</title>
+  <meta name="description" content="ShopAZE — rəqəmsal premium xidmətlər və hesablar.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #050505;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5,5,5,.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      height: 72px;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #8b5cf6;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .menu {
+      display: none;
+      font-size: 25px;
+      background: none;
+      border: 0;
+      color: white;
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 590px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .glow {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: #6d28d9;
+      filter: blur(150px);
+      opacity: .20;
+      animation: float 7s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% {
+        transform: translate(-20px,-10px);
+      }
+      50% {
+        transform: translate(30px,20px);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(139,92,246,.4);
+      background: rgba(139,92,246,.08);
+      border-radius: 999px;
+      color: #c4b5fd;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(44px, 9vw, 82px);
+      line-height: .95;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg,#fff,#a78bfa,#8b5cf6);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: #999;
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .hero-buttons {
+      margin-top: 35px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 13px;
+      padding: 14px 23px;
+      font-weight: 700;
+      transition: .25s;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #050505;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(255,255,255,.12);
+    }
+
+    .btn-dark {
+      background: #111;
+      color: #fff;
+      border: 1px solid #222;
+    }
+
+    .btn-dark:hover {
+      border-color: #444;
+    }
+
+    /* SECTION */
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 75px 22px;
+    }
+
+    .section-title {
+      margin-bottom: 35px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      letter-spacing: -1px;
+    }
+
+    .section-title p {
+      color: #777;
+      margin-top: 8px;
+    }
+
+    /* CATEGORIES */
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+      gap: 12px;
+    }
+
+    .category {
+      background: #0c0c0c;
+      border: 1px solid #1c1c1c;
+      border-radius: 16px;
+      padding: 24px 15px;
+      text-align: center;
+      transition: .25s;
+    }
+
+    .category:hover {
+      transform: translateY(-5px);
+      border-color: #6d28d9;
+      background: #101010;
+    }
+
+    .category-icon {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .category h3 {
+      font-size: 15px;
+    }
+
+    .category p {
+      color: #666;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    /* PRODUCTS */
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 15px;
+    }
+
+    .product {
+      background: linear-gradient(145deg,#111,#090909);
+      border: 1px solid #1d1d1d;
+      border-radius: 20px;
+      padding: 22px;
+      transition: .25s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      border-color: #333;
+    }
+
+    .product-tag {
+      color: #a78bfa;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+    }
+
+    .product h3 {
+      margin-top: 12px;
+      font-size: 19px;
+    }
+
+    .product-price {
+      margin: 18px 0;
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .product-price small {
+      color: #777;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .product button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 11px;
+      border: 1px solid #292929;
+      background: #161616;
+      color: #fff;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .product button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* FEATURES */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 15px;
+    }
+
+    .feature {
+      padding: 25px;
+      background: #0c0c0c;
+      border: 1px solid #191919;
+      border-radius: 18px;
+    }
+
+    .feature-icon {
+      font-size: 25px;
+      margin-bottom: 15px;
+    }
+
+    .feature h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      color: #777;
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    /* SUPPORT */
+
+    .support {
+      text-align: center;
+      background: linear-gradient(145deg,#0f0f0f,#080808);
+      border: 1px solid #1c1c1c;
+      border-radius: 25px;
+      padding: 55px 20px;
+    }
+
+    .support h2 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .support p {
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid #151515;
+      padding: 35px 22px;
+      text-align: center;
+      color: #555;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 650px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu {
+        display: block;
+      }
+
+      .hero {
+        min-height: 530px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      section {
+        padding: 55px 16px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav">
+
+    <a href="#" class="logo">
+      Shop<span>AZE</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#products">Məhsullar</a>
+      <a href="#categories">Kateqoriyalar</a>
+      <a href="#support">Dəstək</a>
+    </div>
+
+    <button class="menu">☰</button>
+
+  </nav>
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <div class="hero">
+
+    <div class="glow"></div>
+
+    <div class="hero-content">
+
+      <div class="badge">
+        Premium Digital Store
+      </div>
+
+      <h1>
+        Rəqəmsal dünyanı<br>
+        <span class="gradient">daha əlçatan et.</span>
+      </h1>
+
+      <p>
+        Premium xidmətlər, hesablar və rəqəmsal məhsullar.
+        Sürətli sifariş, təhlükəsiz ödəniş və zəmanətli xidmət.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#products" class="btn btn-primary">
+          Məhsullara bax
+        </a>
+
+        <a href="#support" class="btn btn-dark">
+          Dəstək
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CATEGORIES -->
+
+  <section id="categories">
+
+    <div class="section-title">
+      <h2>Kateqoriyalar</h2>
+      <p>İstədiyin rəqəmsal xidməti tap.</p>
+    </div>
+
+    <div class="categories">
+
+      <a href="#products" class="category">
+        <div class="category-icon">🎵</div>
+        <h3>Spotify</h3>
+        <p>Premium xidmətlər</p>
+      </a>
+
+      <a href="#products" class="category">
+        <div class="category-icon">🎬</div>
+        <h3>Netflix</h3>
+        <p>4K UHD Premium</p>
+      </a>
+
+      <a href="#products" class="category">
+        <div class="category-icon">💬</div>
+        <h3>Discord</h3>
+        <p>Nitro & Boost</p>
+      </a>
+
+      <a href="#products" class="category">
+        <div class="category-icon">👤</div>
+        <h3>Hesablar</h3>
+        <p>Rəqəmsal hesablar</p>
+      </a>
+
+      <a href="#products" class="category">
+        <div class="category-icon">👥</div>
+        <h3>Üzv xidməti</h3>
+        <p>Online & Offline</p>
+      </a>
+
+      <a href="#support" class="category">
+        <div class="category-icon">📱</div>
+        <h3>Virtual nömrə</h3>
+        <p>Əlaqə saxlayın</p>
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUCTS -->
+
+  <section id="products">
+
+    <div class="section-title">
+      <h2>Seçilmiş məhsullar</h2>
+      <p>ShopAZE-də ən çox tələb olunan xidmətlər.</p>
+    </div>
+
+    <div class="products">
+
+      <div class="product">
+        <div class="product-tag">Spotify</div>
+        <h3>Spotify Hesab — 1 ay</h3>
+        <div class="product-price">
+          6.99 ₼
+        </div>
+        <button onclick="order('Spotify Hesab — 1 ay')">
+          Sifariş et
+        </button>
+      </div>
+
+
+      <div class="product">
+        <div class="product-tag">Netflix</div>
+        <h3>Netflix 4K UHD Premium</h3>
+        <div class="product-price">
+          6.99 ₼ <small>/ 1 ay</small>
+        </div>
+        <button onclick="order('Netflix 4K UHD Premium — 1 ay')">
+          Sifariş et
+        </button>
+      </div>
+
+
+      <div class="product">
+        <div class="product-tag">Discord</div>
+        <h3>Discord Nitro Promo</h3>
+        <div class="product-price">
+          2.99 ₼ <small>/ 1 ay</small>
+        </div>
+        <button onclick="order('Discord Nitro Promo — 1 ay')">
+          Sifariş et
+        </button>
+      </div>
+
+
+      <div class="product">
+        <div class="product-tag">Discord</div>
+        <h3>Discord 6x Boost</h3>
+        <div class="product-price">
+          3.99 ₼ <small>/ 1 ay</small>
+        </div>
+        <button onclick="order('Discord 6x Boost — 1 ay')">
+          Sifariş et
+        </button>
+      </div>
+
+
+      <div class="product">
+        <div class="product-tag">Discord</div>
+        <h3>Discord 14x Boost</h3>
+        <div class="product-price">
+          7.99 ₼ <small>/ 1 ay</small>
+        </div>
+        <button onclick="order('Discord 14x Boost — 1 ay')">
+          Sifariş et
+        </button>
+      </div>
+
+
+      <div class="product">
+        <div class="product-tag">Discord</div>
+        <h3>Discord 30x Boost</h3>
+        <div class="product-price">
+          13.99 ₼ <small>/ 1 ay</small>
+        </div>
+        <button onclick="order('Discord 30x Boost — 1 ay')">
+          Sifariş et
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FEATURES -->
+
+  <section>
+
+    <div class="section-title">
+      <h2>Niyə ShopAZE?</h2>
+      <p>Sadə, sürətli və rahat alış təcrübəsi.</p>
+    </div>
+
+    <div class="features">
+
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Sürətli xidmət</h3>
+        <p>
+          Sifarişlər mümkün qədər qısa müddətdə
+          emal olunur.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🛡️</div>
+        <h3>Zəmanət</h3>
+        <p>
+          Məhsullara zəmanət verilir və problem
+          yarandıqda sifariş araşdırılır.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">💳</div>
+        <h3>Rahat ödəniş</h3>
+        <p>
+          Kart və bank köçürməsi ilə ödəniş
+          imkanları.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">💬</div>
+        <h3>24/7 dəstək</h3>
+        <p>
+          Sifariş və problemlərlə bağlı dəstək
+          xidməti.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SUPPORT -->
+
+  <section id="support">
+
+    <div class="support">
+
+      <h2>Dəstəyə ehtiyacın var?</h2>
+
+      <p>
+        Sifariş və ya məhsullarla bağlı sualın varsa,
+        WhatsApp üzərindən bizimlə əlaqə saxla.
+      </p>
+
+      <a
+        href="https://wa.me/994504167613"
+        target="_blank"
+        class="btn btn-primary"
+      >
+        WhatsApp ilə əlaqə
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  © 2026 ShopAZE. All rights reserved.
+</footer>
+
+
+<script>
+
+  function order(product) {
+
+    const message =
+      "Salam ShopAZE!%0A%0A" +
+      "Məhsul: " + product + "%0A" +
+      "Sifariş vermək istəyirəm.";
+
+    window.open(
+      "https://wa.me/994504167613?text=" + message,
+      "_blank"
+    );
+
+  }
+
+</script>
+
+</body>
+</html>
